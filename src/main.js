@@ -11,6 +11,9 @@ import "@/common/js/rem.js"
 //浏览器样式格式化（手机端）
 import "@/common/css/reset.css"
 
+//导入图标
+import "@/common/css/iconfont/iconfont.css";
+
 //全局引入：导入vant的ui组件库--全局引入（缺点引入的包很大，导致打开程序很慢，尤其是手机端网速不行的时候）
 //import Vant from 'vant';
 //import 'vant/lib/index.css';
