@@ -18,9 +18,9 @@ import "@/common/css/reset.css"
 
 //按需引入：打包少，程序运行速度会变快
 //使用babel-plugin-import实现按需引入，配置babel.config.js文件
-import {Button} from "vant";
+import {Button, Row, Col} from "vant";
 
-Vue.use(Button);
+Vue.use(Button).use(Row).use(Col);
 
 
 Vue.config.productionTip = false;
