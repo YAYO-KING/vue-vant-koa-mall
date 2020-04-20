@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "serve": "vue-cli-service serve --mode dev",
+    "build": "vue-cli-service build --report",
+    "build:test": "vue-cli-service build --mode test",
+    "build:prod": "vue-cli-service build --mode prod"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "core-js": "^3.6.4",
     "vant": "^2.6.2",
     "vue": "^2.6.11",
