@@ -9,6 +9,15 @@
 
     export default {
         name: 'Home',
-        components: {}
+        components: {},
+        mounted() {
+            console.log();
+        }
     }
 </script>
+
+<style scoped>
+    .home {
+        width: 7.5rem;
+    }
+</style>
