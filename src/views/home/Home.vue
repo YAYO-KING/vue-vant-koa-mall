@@ -32,6 +32,18 @@
             </van-swipe>
         </div>
 
+        <!--类别区域-->
+        <div class="category-box">
+            <div v-for="(category,index) in categoryList" :key="index">
+                <img v-lazy="category.image">
+                <div>{{category.mallCategoryName}}</div>
+            </div>
+        </div>
+
+        <!--广告区域-->
+        <div class="advertise">
+            <img v-lazy="advertiseBanner" alt="" width="100%">
+        </div>
 
     </div>
 </template>
@@ -50,13 +62,16 @@
                     {imageUrl: require("@/assets/images/advertisement/advertise2.jpg")},
                     {imageUrl: require("@/assets/images/advertisement/advertise3.jpg")}
                 ],
-                data:{}
+                categoryList: [],
+                advertiseBanner: "",
+
             }
         },
-        mounted(){
+        mounted() {
             let vm = this;
-            vm.$api.getHomeData().then(res=>{
-                console.log(res.data);
+            vm.$api.getHomeData().then(res => {
+                vm.categoryList = res.data.category;
+                vm.advertiseBanner = res.data.advertesPicture.PICTURE_ADDRESS;
             })
         },
         methods: {}
@@ -99,6 +114,28 @@
                 height: 3.5rem;
             }
 
+        }
+
+        .category-box {
+            background-color: #fff;
+            margin: 0 0.3rem 0.3rem 0.3rem;
+            border-radius: 0.3rem;
+            font-size: 14px;
+            /*flex布局，主轴行，不换行*/
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+
+            div {
+                padding: 0.1rem;
+                font-size: 12px;
+                text-align: center;
+
+                img {
+                    width: 1rem; //50px
+                    height: 1rem;
+                }
+            }
         }
     }
 </style>

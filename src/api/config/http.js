@@ -84,7 +84,7 @@ http.interceptors.request.use(config => {
     return config
 }, error => {
 
-    store.dispatch('common/set_loading', false);
+    //store.dispatch('common/set_loading', false);
     loadingCount = 0;
 
     Promise.reject(error)
@@ -99,7 +99,7 @@ http.interceptors.response.use(
             } else {
                 Notify({
                     type: 'danger',
-                    message: response.data.message,
+                    message: response.data.message || "请求失败",
                 });
                 //Toast.fail(response.data.msg);
                 return Promise.reject(response)
@@ -107,14 +107,14 @@ http.interceptors.response.use(
         } else {
             Notify({
                 type: 'danger',
-                message: response.data.message,
+                message: response.data.message || "请求失败",
             });
             //Toast.fail(response.data.msg);
             return Promise.reject(response)
         }
     },
     error => {
-        store.dispatch('common/set_loading', false);
+        //store.dispatch('common/set_loading', false);
         loadingCount = 0;
 
         let errorMessage = error.message;
@@ -154,8 +154,7 @@ function get(url, params = {}, options = {}) {
     return http({
         url,
         method: 'GET',
-        headers: {
-        },
+        headers: {},
         params,
         options
     })

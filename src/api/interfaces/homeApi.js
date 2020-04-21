@@ -8,8 +8,8 @@ const post = Http.post;
 const get = Http.get;
 
 const homeApi = {
-    getHomeData(params) {
-        return get('/index', params)
+    getHomeData() {
+        return get('/index')
     },
 
 
