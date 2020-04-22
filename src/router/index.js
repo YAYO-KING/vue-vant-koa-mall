@@ -18,6 +18,18 @@ const routes = [
             }
         ]
     },
+    {
+        path: '/',
+        component: Layout,
+        redirect: '/home',
+        children: [
+            {
+                path: '/swiper-default',
+                component: () => import('@/views/swiperDemo/SwiperDefault'),
+                name: 'SwiperDefault'
+            }
+        ]
+    },
 ];
 
 const router = new VueRouter({
