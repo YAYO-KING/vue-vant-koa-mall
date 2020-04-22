@@ -21,7 +21,6 @@ const routes = [
     {
         path: '/',
         component: Layout,
-        redirect: '/home',
         children: [
             {
                 path: '/swiper-default',
@@ -30,6 +29,7 @@ const routes = [
             }
         ]
     },
+
 ];
 
 const router = new VueRouter({
