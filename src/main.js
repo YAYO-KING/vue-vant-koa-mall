@@ -28,6 +28,10 @@ Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload);
 import api from './api/index';
 Vue.prototype.$api = api;
 
+//引入vue-awesome-swiper的使用,全局使用（如果只是某个页面使用的话，就在那个页面引入就可以了）
+//import VueAwesomeSwiper from 'vue-awesome-swiper'
+//import 'swiper/dist/css/swiper.css'
+//Vue.use(VueAwesomeSwiper);
 
 
 Vue.config.productionTip = false;

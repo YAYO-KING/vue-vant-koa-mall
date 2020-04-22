@@ -45,6 +45,23 @@
             <img v-lazy="advertiseBanner" alt="" width="100%">
         </div>
 
+        <!--推荐的商品-->
+        <div class="recommend-box">
+            <div class="recommend-title">商品推荐</div>
+            <div class="recommend-body">
+                <swiper :options="swiperOptions">
+                    <swiper-slide v-for="(recmmend,key) in recommendGoods" :key="index">
+                        <div class="recommend-item">
+                            <img v-lazy="recmmend.image" width="80%" alt="">
+                            <div>{{recmmend.goodsName}}</div>
+                            <div>${{recmmend.price}}(${{recmmend.mallPrice}})</div>
+                        </div>
+                    </swiper-slide>
+                </swiper>
+            </div>
+        </div>
+
+
     </div>
 </template>
 
@@ -52,11 +69,19 @@
     /**
      * Created by yanyue on 2020/4/20 16:06
      */
+    //导入vue-awesome-swiper的使用，在单独的组件中使用
+    import 'swiper/dist/css/swiper.css'
+    import {swiper, swiperSlide} from 'vue-awesome-swiper'
+
 
     export default {
         name: "Home",
+        components: {swiper, swiperSlide},
         data() {
             return {
+                swiperOptions: {
+                    slidesPerView: 3
+                },
                 swipeImages: [
                     {imageUrl: require("@/assets/images/advertisement/advertise1.jpg")},
                     {imageUrl: require("@/assets/images/advertisement/advertise2.jpg")},
@@ -64,6 +89,7 @@
                 ],
                 categoryList: [],
                 advertiseBanner: "",
+                recommendGoods: []
 
             }
         },
@@ -72,6 +98,7 @@
             vm.$api.getHomeData().then(res => {
                 vm.categoryList = res.data.category;
                 vm.advertiseBanner = res.data.advertesPicture.PICTURE_ADDRESS;
+                vm.recommendGoods = res.data.recommend;
             })
         },
         methods: {}
@@ -117,8 +144,9 @@
         }
 
         .category-box {
+            height: 1.6rem;
             background-color: #fff;
-            margin: 0 0.3rem 0.3rem 0.3rem;
+            margin: 0.1rem 0.3rem;
             border-radius: 0.3rem;
             font-size: 14px;
             /*flex布局，主轴行，不换行*/
@@ -136,6 +164,30 @@
                     height: 1rem;
                 }
             }
+        }
+
+        .recommend-box {
+            margin-top: 0.1rem;
+            background-color: #fff;
+
+            .recommend-title {
+                border-bottom: 1px solid #eee;
+                font-size: 14px;
+                padding: 0.1rem;
+                color: $backGroundColor;
+            }
+
+            .recommend-body {
+                border-bottom: 1px solid #eee;
+
+                .recommend-item {
+                    width: 99%;
+                    border-right: 1px solid #eee;
+                    font-size: 12px;
+                    text-align: center;
+                }
+            }
+
         }
     }
 </style>

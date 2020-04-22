@@ -52,8 +52,9 @@ module.exports = {
     },
     devServer: {
         open: false,   //每次运行自动打开浏览器
+        disableHostCheck: true,
         host: '0.0.0.0',
-        port: 3000,
+        port: 8080,
         https: false,
         hotOnly: false,
         proxy: { // 配置跨域
