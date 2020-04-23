@@ -54,7 +54,7 @@
                         <div class="recommend-item">
                             <img v-lazy="recmmend.image" width="80%" alt="">
                             <div>{{recmmend.goodsName}}</div>
-                            <div>￥{{recmmend.price | momeyFilter}}(￥{{recmmend.mallPrice | momeyFilter}})</div>
+                            <div>￥{{recmmend.price | moneyFilter}}(￥{{recmmend.mallPrice | moneyFilter}})</div>
                         </div>
                     </swiper-slide>
                 </swiper>
@@ -88,6 +88,25 @@
             </div>
         </div>
 
+        <!--热卖模块-->
+        <div class="hot-box">
+            <div class="hot-title">热卖商品</div>
+            <div class="hot-goods">
+                <van-list>
+                    <van-row gutter="20">
+                        <van-col span="12" v-for="(item,index) in hotGoods" :key="index">
+                            <Goods
+                                    :goodsImage="item.image"
+                                    :goodsName="item.name"
+                                    :goodsPrice="item.price"
+                            ></Goods>
+                        </van-col>
+                    </van-row>
+                </van-list>
+            </div>
+        </div>
+
+
     </div>
 </template>
 
@@ -98,13 +117,14 @@
     //导入vue-awesome-swiper的使用，在单独的组件中使用
     import 'swiper/dist/css/swiper.css'
     import {swiper, swiperSlide} from 'vue-awesome-swiper'
+    import Goods from "./components/Goods"
 
     //import Floor from "./components/Floor";
 
 
     export default {
         name: "Home",
-        components: {swiper, swiperSlide},
+        components: {swiper, swiperSlide, Goods},
         data() {
             return {
                 swiperOptions: {
@@ -120,7 +140,8 @@
                 recommendGoods: [],
                 //商品的楼层数据
                 floorList: [],
-                floorNameList: {}
+                floorNameList: {},
+                hotGoods: [],//热卖商品
 
             }
         },
@@ -131,6 +152,7 @@
                 vm.advertiseBanner = res.data.advertesPicture.PICTURE_ADDRESS;
                 vm.recommendGoods = res.data.recommend;
                 vm.floorNameList = res.data.floorName;
+                vm.hotGoods = res.data.hotGoods;
                 //vm.floor1 = res.data.floor1;
                 for (let key in vm.floorNameList) {
                     vm.floorList.push({
@@ -277,6 +299,19 @@
             }
 
 
+        }
+
+        .hot-box {
+            .hot-title {
+                height: 0.5rem;
+                line-height: 0.5rem;
+                background-color: #eee;
+            }
+
+            text-align: center;
+            font-size: 14px;
+            /*height: 3rem;*/
+            /*line-height: 3rem;*/
         }
     }
 </style>

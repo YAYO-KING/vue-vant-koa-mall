@@ -21,8 +21,8 @@ import "@/common/css/iconfont/iconfont.css";
 
 //按需引入：打包少，程序运行速度会变快
 //使用babel-plugin-import实现按需引入，配置babel.config.js文件
-import {Button, Row, Col, Swipe, SwipeItem, Lazyload} from "vant";
-Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload);
+import {Button, Row, Col, Swipe, SwipeItem, Lazyload,List} from "vant";
+Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload).use(List);
 
 //导入api接口
 import api from './api/index';

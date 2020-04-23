@@ -3,7 +3,7 @@
  */
 import util from "./util.js";
 
-const momeyFilter = function (val = 0) {
+const moneyFilter = function (val = 0) {
     if (util.TypeFn.isNumber(val)) {
         //值  保留几位：2  小数点符号.  千分位符号,
         return util.NumberFn.numberFormat(val, 2, ".", ",");
@@ -12,5 +12,5 @@ const momeyFilter = function (val = 0) {
 };
 
 export {
-    momeyFilter,
+    moneyFilter,
 }
