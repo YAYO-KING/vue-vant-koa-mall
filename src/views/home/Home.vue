@@ -50,7 +50,7 @@
             <div class="recommend-title">商品推荐</div>
             <div class="recommend-body">
                 <swiper :options="swiperOptions">
-                    <swiper-slide v-for="(recmmend,key) in recommendGoods" :key="index">
+                    <swiper-slide v-for="(recmmend,index) in recommendGoods" :key="index">
                         <div class="recommend-item">
                             <img v-lazy="recmmend.image" width="80%" alt="">
                             <div>{{recmmend.goodsName}}</div>
@@ -61,6 +61,29 @@
             </div>
         </div>
 
+        <!--商品楼层-->
+        <div class="floor-box" v-if="floor1 && floor1.length">
+            <!--不规则的,floor1数组中的前三个是不规则的-->
+            <div class="un-normal">
+                <div class="floor-one">
+                    <img :src="floor1[0].image" width="100%">
+                </div>
+                <div>
+                    <div class="floor-two">
+                        <img :src="floor1[1].image" width="100%">
+                    </div>
+                    <div>
+                        <img :src="floor1[2].image" width="100%">
+                    </div>
+                </div>
+            </div>
+            <!--规则的-->
+            <div class="normal">
+                <div v-for="(item,index) in floor1.slice(3)" :key="index">
+                    <img :src="item.image" alt="" width="100%">
+                </div>
+            </div>
+        </div>
 
     </div>
 </template>
@@ -89,16 +112,19 @@
                 ],
                 categoryList: [],
                 advertiseBanner: "",
-                recommendGoods: []
+                recommendGoods: [],
+                //商品的楼层数据
+                floor1: []
 
             }
         },
-        mounted() {
+        created() {
             let vm = this;
             vm.$api.getHomeData().then(res => {
                 vm.categoryList = res.data.category;
                 vm.advertiseBanner = res.data.advertesPicture.PICTURE_ADDRESS;
                 vm.recommendGoods = res.data.recommend;
+                vm.floor1 = res.data.floor1;
             })
         },
         methods: {}
@@ -187,6 +213,49 @@
                     text-align: center;
                 }
             }
+
+        }
+
+        .floor-box {
+
+
+            .un-normal {
+                display: flex;
+                flex-direction: row;
+                background-color: #fff;
+                border-bottom: 1px solid #ccc;
+
+                div {
+                    width: 3.75rem;
+                    box-sizing: border-box;
+                }
+
+                .floor-one {
+                    border-right: 1px solid #ccc;
+                }
+
+                .floor-two {
+                    border-bottom: 1px solid #ccc;
+                }
+            }
+
+            .normal {
+                display: flex;
+                flex-direction: row;
+                background-color: #fff;
+                flex-wrap: wrap;
+
+                div {
+                    width: 3.75rem;
+                    border-bottom: 1px solid #ccc;
+                    box-sizing: border-box;
+                    /*奇数下标的子元素*/
+                    &:nth-child(odd) {
+                        border-right: 1px solid #ccc;
+                    }
+                }
+            }
+
 
         }
     }
