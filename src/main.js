@@ -33,6 +33,12 @@ Vue.prototype.$api = api;
 //import 'swiper/dist/css/swiper.css'
 //Vue.use(VueAwesomeSwiper);
 
+//引入全局过滤器
+import * as filters from './common/js/filter.js'
+Object.keys(filters).forEach(key => {
+    Vue.filter(key, filters[key])
+});
+
 
 Vue.config.productionTip = false;
 

@@ -54,7 +54,7 @@
                         <div class="recommend-item">
                             <img v-lazy="recmmend.image" width="80%" alt="">
                             <div>{{recmmend.goodsName}}</div>
-                            <div>${{recmmend.price}}(${{recmmend.mallPrice}})</div>
+                            <div>￥{{recmmend.price | momeyFilter}}(￥{{recmmend.mallPrice | momeyFilter}})</div>
                         </div>
                     </swiper-slide>
                 </swiper>
