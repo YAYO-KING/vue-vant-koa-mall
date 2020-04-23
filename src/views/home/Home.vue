@@ -63,6 +63,7 @@
 
         <!--商品楼层-->
         <div class="floor-box" v-if="floor1 && floor1.length">
+            <!--<Floor :floor1="floor1"></Floor>-->
             <!--不规则的,floor1数组中的前三个是不规则的-->
             <div class="un-normal">
                 <div class="floor-one">
@@ -79,6 +80,7 @@
             </div>
             <!--规则的-->
             <div class="normal">
+                <!--slice(start, end) 方法可提取字符串的某个部分，并以新的字符串返回被提取的部分-->
                 <div v-for="(item,index) in floor1.slice(3)" :key="index">
                     <img :src="item.image" alt="" width="100%">
                 </div>
@@ -95,6 +97,8 @@
     //导入vue-awesome-swiper的使用，在单独的组件中使用
     import 'swiper/dist/css/swiper.css'
     import {swiper, swiperSlide} from 'vue-awesome-swiper'
+
+    //import Floor from "./components/Floor";
 
 
     export default {
