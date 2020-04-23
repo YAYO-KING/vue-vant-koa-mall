@@ -62,26 +62,27 @@
         </div>
 
         <!--商品楼层-->
-        <div class="floor-box" v-if="floor1 && floor1.length">
+        <div class="floor-box" v-for="(floor,index) in floorList" :key="index" v-if="floorList && floorList.length">
+            <div class="floor-title">{{floor.name}}</div>
             <!--<Floor :floor1="floor1"></Floor>-->
             <!--不规则的,floor1数组中的前三个是不规则的-->
             <div class="un-normal">
                 <div class="floor-one">
-                    <img :src="floor1[0].image" width="100%">
+                    <img :src="floor.floors[0].image" width="100%">
                 </div>
                 <div>
                     <div class="floor-two">
-                        <img :src="floor1[1].image" width="100%">
+                        <img :src="floor.floors[1].image" width="100%">
                     </div>
                     <div>
-                        <img :src="floor1[2].image" width="100%">
+                        <img :src="floor.floors[2].image" width="100%">
                     </div>
                 </div>
             </div>
             <!--规则的-->
             <div class="normal">
                 <!--slice(start, end) 方法可提取字符串的某个部分，并以新的字符串返回被提取的部分-->
-                <div v-for="(item,index) in floor1.slice(3)" :key="index">
+                <div v-for="(item,index) in floor.floors.slice(3)" :key="index">
                     <img :src="item.image" alt="" width="100%">
                 </div>
             </div>
@@ -118,7 +119,8 @@
                 advertiseBanner: "",
                 recommendGoods: [],
                 //商品的楼层数据
-                floor1: []
+                floorList: [],
+                floorNameList: {}
 
             }
         },
@@ -128,7 +130,14 @@
                 vm.categoryList = res.data.category;
                 vm.advertiseBanner = res.data.advertesPicture.PICTURE_ADDRESS;
                 vm.recommendGoods = res.data.recommend;
-                vm.floor1 = res.data.floor1;
+                vm.floorNameList = res.data.floorName;
+                //vm.floor1 = res.data.floor1;
+                for (let key in vm.floorNameList) {
+                    vm.floorList.push({
+                        name: vm.floorNameList[key],
+                        floors: res.data[key]
+                    })
+                }
             })
         },
         methods: {}
@@ -222,6 +231,13 @@
 
         .floor-box {
 
+            .floor-title {
+                text-align: center;
+                font-size: 14px;
+                height: 0.5rem;
+                line-height: 0.5rem;
+                background-color: #eee;
+            }
 
             .un-normal {
                 display: flex;
