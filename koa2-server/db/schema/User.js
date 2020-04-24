@@ -17,7 +17,7 @@ const userSchema = new Schema({
     //用户id
     userId: ObjectId,
     //用户名
-    userName: {
+    username: {
         unique: true,
         type: String,
     },
@@ -30,7 +30,7 @@ const userSchema = new Schema({
 });
 
 //每次保存的时候都会执行
-userSchema.pre("save", (next) => {
+userSchema.pre("save", function (next) {  //这边一定要写function，不然下面的this.password会找不到上面的password数据
     //加盐   SALT_WORK_FACTOR加盐等级
     bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
         if (err) next(err);

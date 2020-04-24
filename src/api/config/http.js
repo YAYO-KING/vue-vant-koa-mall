@@ -101,7 +101,7 @@ http.interceptors.response.use(
                     type: 'danger',
                     message: response.data.message || "请求失败",
                 });
-                //Toast.fail(response.data.msg);
+                //Toast.fail(response.data.msg|| "请求失败");
                 return Promise.reject(response)
             }
         } else {
@@ -109,7 +109,7 @@ http.interceptors.response.use(
                 type: 'danger',
                 message: response.data.message || "请求失败",
             });
-            //Toast.fail(response.data.msg);
+            //Toast.fail(response.data.msg|| "请求失败");
             return Promise.reject(response)
         }
     },
@@ -145,7 +145,7 @@ http.interceptors.response.use(
             type: 'danger',
             message: errorMessage,
         });
-        //Toast.fail("请求失败");
+        //Toast.fail(errorMessage||"请求失败");
         return Promise.reject(error.response)
     }
 );

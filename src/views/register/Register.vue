@@ -39,7 +39,8 @@
             handleRegister() {
                 let vm = this;
                 vm.$api.register(vm.userForm).then(res => {
-                    vm.$notify.success("注册成功");
+                    //vm.$notify.success("注册成功");
+                    vm.$toast.success("注册成功");
                 })
             }
         }
