@@ -9,7 +9,8 @@ const get = Http.get;
 
 const userApi = {
     register(params) {
-        return post('/user/register', params, {loading: true})
+        //return post('/user/register', params, {loading: true})
+        return post('/user/register', params)
     },
 
 

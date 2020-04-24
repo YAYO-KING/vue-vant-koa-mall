@@ -5,10 +5,11 @@
 
 const Router = require("koa-router");
 const mongoose = require("mongoose");
-
+const util = require("../utils/util");
 const router = new Router();
 
 router.post("/register", async (ctx) => {
+    //util.OtherFn.sleep(5000);
     let User = mongoose.model("User");
     let newUser = new User(ctx.request.body);
     await newUser.save().then(() => {
@@ -17,10 +18,9 @@ router.post("/register", async (ctx) => {
             message: "注册成功"
         }
     }).catch(error => {
-        console.log(error);
         ctx.body = {
             code: 500,
-            message: error
+            message: error.errmsg
         }
     })
 });

@@ -27,6 +27,8 @@ const userSchema = new Schema({
     createDate: {type: Date, default: Date.now()},
     //最后登录时间
     lastLoginDate: {type: Date, default: Date.now()},
+}, {
+    collection: "user"  //避免创建的表名变为users
 });
 
 //每次保存的时候都会执行

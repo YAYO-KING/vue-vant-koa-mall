@@ -9,7 +9,7 @@
 
         </div>
         <div class="button-box">
-            <van-button type="primary" size="large" @click="handleRegister">
+            <van-button type="primary" size="large" @click="handleRegister" :loading="openLoading">
                 注册
             </van-button>
         </div>
@@ -28,7 +28,8 @@
                 userForm: {
                     username: "",
                     password: ""
-                }
+                },
+                openLoading: false
             }
         },
         methods: {
@@ -38,9 +39,15 @@
             //用户注册
             handleRegister() {
                 let vm = this;
+                vm.openLoading = true;
                 vm.$api.register(vm.userForm).then(res => {
                     //vm.$notify.success("注册成功");
                     vm.$toast.success("注册成功");
+                    vm.openLoading = false;
+                    vm.$router.push("/");
+                }).catch(() => {
+                    vm.$toast.fail("注册失败");
+                    vm.openLoading = false;
                 })
             }
         }

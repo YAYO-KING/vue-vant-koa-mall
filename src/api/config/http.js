@@ -30,9 +30,11 @@ function startLoading() {
         //});
 
         //1.vant自带的loading
-        Toast.loading({
+        loadingInstance = Toast.loading({
+            duration: 0, // 持续展示 toast
             message: '加载中...',
-            forbidClick: true
+            //overlay: true, //遮罩层
+            forbidClick: true  //禁止点击
         });
 
         //2.自己创建Loading.vue组件，通过控制state来显示和不显示
@@ -54,7 +56,7 @@ function endLoading() {
         //loadingInstance.close();
 
         //1.方式一
-        Toast.clear();
+        loadingInstance.clear();
 
         //2.方式二
         //store.dispatch('common/set_loading', false);
