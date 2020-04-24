@@ -28,6 +28,12 @@ npm i mongoose -S
 npm i glob -S
 node的glob模块，允许使用*等符号，来写一个glob规则，像在shell中一样，获取匹配对应的规则文件
 
+#安装bcrypt
+npm i bcrypt -S
+bcrypt进行密码加密使用
+
+
+
 
 
 

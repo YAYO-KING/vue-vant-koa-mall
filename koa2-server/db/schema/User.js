@@ -8,6 +8,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 let ObjectId = Schema.Types.ObjectId;
 
+const bcrypt = require("bcrypt");
+//加盐参数
+const SALT_WORK_FACTOR = 10;
+
 //创建UserSchema
 const userSchema = new Schema({
     //用户id
@@ -23,6 +27,20 @@ const userSchema = new Schema({
     createDate: {type: Date, default: Date.now()},
     //最后登录时间
     lastLoginDate: {type: Date, default: Date.now()},
+});
+
+//每次保存的时候都会执行
+userSchema.pre("save", (next) => {
+    //加盐   SALT_WORK_FACTOR加盐等级
+    bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
+        if (err) next(err);
+        //加盐加密
+        bcrypt.hash(this.password, salt, (err, hash) => {
+            if (err) next(err);
+            this.password = hash;
+            next();
+        })
+    })
 });
 
 //发布模型
