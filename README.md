@@ -32,6 +32,9 @@ node的glob模块，允许使用*等符号，来写一个glob规则，像在shel
 npm i bcrypt -S
 bcrypt进行密码加密使用
 
+#安装koa-router
+npm i koa-router -S
+实现koa的路由接口api
 
 
 
