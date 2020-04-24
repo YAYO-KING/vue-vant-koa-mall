@@ -9,7 +9,7 @@
 
         </div>
         <div class="button-box">
-            <van-button type="primary" size="large" @click="">
+            <van-button type="primary" size="large" @click="handleRegister">
                 注册
             </van-button>
         </div>
@@ -34,6 +34,13 @@
         methods: {
             goBack() {
                 this.$router.go(-1);
+            },
+            //用户注册
+            handleRegister() {
+                let vm = this;
+                vm.$api.register(vm.userForm).then(res => {
+                    vm.$notify.success("注册成功");
+                })
             }
         }
     }

@@ -21,6 +21,7 @@ exports.initSchemas = () => {
 
 exports.connect = () => {
     //连接数据库
+    mongoose.set('useCreateIndex', true);
     mongoose.connect(dbUrl, {useNewUrlParser: true, useUnifiedTopology: true});
     //重新连接的次数
     let maxConnectTimes = 0;
@@ -33,6 +34,7 @@ exports.connect = () => {
             console.log("*************************数据库断开**************************");
             if (maxConnectTimes <= 3) {
                 maxConnectTimes++;
+                mongoose.set('useCreateIndex', true);
                 mongoose.connect(dbUrl, {useNewUrlParser: true, useUnifiedTopology: true});
             } else {
                 reject();
@@ -46,6 +48,7 @@ exports.connect = () => {
             console.log("*************************数据库错误**************************");
             if (maxConnectTimes <= 3) {
                 maxConnectTimes++;
+                mongoose.set('useCreateIndex', true);
                 mongoose.connect(dbUrl, {useNewUrlParser: true, useUnifiedTopology: true});
             } else {
                 reject(err);

@@ -59,7 +59,9 @@ module.exports = {
         hotOnly: false,
         proxy: { // 配置跨域
             '/vant-mall': {
-                target: 'http://rap2.taobao.org:38080/app/mock/251485/vant-mall/',
+                //target: 'http://rap2.taobao.org:38080/app/mock/251485/vant-mall/',
+                //注意：一定要写http://localhost:7005/，不要就写localhost:7005/，不然无法代理
+                target: 'http://localhost:7005/',
                 ws: true,
                 changOrigin: true,
                 pathRewrite: {

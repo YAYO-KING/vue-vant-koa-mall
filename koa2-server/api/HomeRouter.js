@@ -5,7 +5,7 @@
 
 const Router = require("koa-router");
 
-const router = new Router();
+let router = new Router();
 
 router.get("/", async (ctx) => {
     ctx.body = "这是首页的数据";

@@ -36,9 +36,13 @@ bcrypt进行密码加密使用
 npm i koa-router -S
 实现koa的路由接口api
 
+#安装koa-bodyparser
+npm i koa-bodyparser -S
+解析post请求中的body的参数
 
-
-
+#安装koa2-cors
+npm i koa2-cors -S
+解决koa2的跨域访问的问题
 
 
 

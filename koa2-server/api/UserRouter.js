@@ -5,10 +5,11 @@
 
 const Router = require("koa-router");
 
-const router = new Router();
+let router = new Router();
 
 router.post("/register", async (ctx) => {
-    ctx.body = "用户注册接口";
+    console.log(ctx.request.body);
+    ctx.body = ctx.request.body;
 });
 
 module.exports = router;
