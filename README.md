@@ -15,6 +15,9 @@ npm i axios@0.18.0 -S
 npm i vue-awesome-swiper@3.1.3  -S
 Swiper常用于移动端网站的内容触摸滑动,Swiper是纯javascript打造的滑动特效插件，面向手机、平板电脑等移动终端，以及PC端网站。Swiper能实现触屏焦点图、触屏Tab切换、触屏多图切换等常用效果。
 
+#安装koa2，后台服务框架
+npm i koa -S
+
 
 
 
