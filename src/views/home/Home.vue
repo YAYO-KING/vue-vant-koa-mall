@@ -92,8 +92,9 @@
         <div class="hot-box">
             <div class="hot-title">热卖商品</div>
             <div class="hot-goods">
+                <!--瀑布流滚动加载，用于展示长列表，当列表即将滚动到底部时，会触发事件并加载更多列表项。-->
                 <van-list>
-                    <van-row gutter="20">
+                    <van-row>
                         <van-col span="12" v-for="(item,index) in hotGoods" :key="index">
                             <Goods
                                     :goodsImage="item.image"
@@ -105,8 +106,6 @@
                 </van-list>
             </div>
         </div>
-
-
     </div>
 </template>
 
@@ -312,6 +311,11 @@
             font-size: 14px;
             /*height: 3rem;*/
             /*line-height: 3rem;*/
+            .Goods:nth-child(odd) {
+                box-sizing: border-box;
+                border-right: 1px solid #ccc;
+                border-bottom: 1px solid #ccc;
+            }
         }
     }
 </style>

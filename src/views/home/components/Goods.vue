@@ -4,7 +4,7 @@
             <img v-lazy="goodsImage" width="90%" alt="">
         </div>
         <div class="goods-name">{{goodsName}}</div>
-        <div class="goods-price">￥{{goodsPrice|moneyFilter}}}</div>
+        <div class="goods-price">￥{{goodsPrice|moneyFilter}}</div>
     </div>
 </template>
 
@@ -26,6 +26,7 @@
 
 <style lang='scss' scoped>
     .Goods {
+        padding: 10px;
         .goods-name {
             padding: 0 8px;
             overflow: hidden;
