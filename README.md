@@ -18,6 +18,11 @@ Swiper常用于移动端网站的内容触摸滑动,Swiper是纯javascript打造
 #安装koa2，后台服务框架
 npm i koa -S
 
+#安装mongoose，实现和mongodb数据库的数据操作
+npm i mongoose -S
+
+
+
 
 
 
