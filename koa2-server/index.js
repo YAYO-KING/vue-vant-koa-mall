@@ -6,11 +6,15 @@ const Koa = require("koa");
 //生成应用
 const app = new Koa();
 //数据库的连接
-const {connect} = require("./db/init");
+const {connect,initSchemas} = require("./db/init");
+//引入mongoose
+const mongoose = require("mongoose");
+
 
 //立即执行函数，连接数据库
 (async () => {
-    await connect()
+    await connect();
+    initSchemas();
 })();
 
 

@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "glob": "^7.1.6",
     "koa": "^2.11.0",
     "mongoose": "^5.9.10"
   },
