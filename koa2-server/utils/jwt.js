@@ -15,7 +15,9 @@ const jwtutil = {
         path: [
             '/common/home',
             '/user/register',
-            '/user/login'
+            '/user/login',
+            "/good/insertAllGoodsInfo",
+            "/good/filterGoods"
         ], // 设置 jwt 认证白名单
     }),
 
