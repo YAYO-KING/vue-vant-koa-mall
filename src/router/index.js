@@ -19,18 +19,19 @@ const routes = [
         ]
     },
     {
-
         path: '/swiper-default',
         component: () => import('@/views/swiperDemo/SwiperDefault'),
         name: 'SwiperDefault'
-
     },
     {
-
         path: '/register',
         component: () => import('@/views/register/Register'),
         name: 'Register'
-
+    },
+    {
+        path: '/login',
+        component: () => import('@/views/login/Login'),
+        name: 'Login'
     },
 
 ];

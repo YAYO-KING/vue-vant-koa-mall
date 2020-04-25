@@ -48,6 +48,10 @@ Object.keys(filters).forEach(key => {
     Vue.filter(key, filters[key])
 });
 
+//全局使用自定义的UI的组件
+import GUI from './components/plugins';
+Vue.use(GUI);
+
 
 Vue.config.productionTip = false;
 
