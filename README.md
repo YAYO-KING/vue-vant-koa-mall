@@ -44,7 +44,8 @@ npm i koa-bodyparser -S
 npm i koa2-cors -S
 解决koa2的跨域访问的问题
 
-
+#安装concurrently，可以同时执行多个脚本
+npm i concurrently -S
 
 
 

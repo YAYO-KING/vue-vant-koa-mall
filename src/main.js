@@ -14,6 +14,14 @@ import "@/common/css/reset.css"
 //导入图标
 import "@/common/css/iconfont/iconfont.css";
 
+//导入自定义校验数据
+import rules from './common/js/rules';
+Vue.prototype.$rules = rules;
+
+//在Vue对象上全局注册一些自定义方法
+import backbase from './common/js/backbase';
+Vue.use(backbase);
+
 //全局引入：导入vant的ui组件库--全局引入（缺点引入的包很大，导致打开程序很慢，尤其是手机端网速不行的时候）
 //import Vant from 'vant';
 //import 'vant/lib/index.css';
@@ -21,8 +29,8 @@ import "@/common/css/iconfont/iconfont.css";
 
 //按需引入：打包少，程序运行速度会变快
 //使用babel-plugin-import实现按需引入，配置babel.config.js文件
-import {Button, Row, Col, Swipe, SwipeItem, Lazyload,List,Field,NavBar,Toast,Notify} from "vant";
-Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload).use(List).use(Field).use(NavBar).use(Toast).use(Notify);
+import {Button, Row, Col, Swipe, SwipeItem, Lazyload, List, Field, NavBar, Toast, Notify, Form} from "vant";
+Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload).use(List).use(Field).use(NavBar).use(Toast).use(Notify).use(Form);
 
 //导入api接口
 import api from './api/index';
@@ -35,6 +43,7 @@ Vue.prototype.$api = api;
 
 //引入全局过滤器
 import * as filters from './common/js/filter.js'
+
 Object.keys(filters).forEach(key => {
     Vue.filter(key, filters[key])
 });

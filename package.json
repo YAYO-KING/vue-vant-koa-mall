@@ -5,12 +5,15 @@
   "scripts": {
     "serve": "vue-cli-service serve --mode dev",
     "build": "vue-cli-service build --report",
+    "server-start": "npm start --prefix ./koa2-server",
     "build:test": "vue-cli-service build --mode test",
-    "build:prod": "vue-cli-service build --mode prod"
+    "build:prod": "vue-cli-service build --mode prod",
+    "dev": "concurrently \"npm run serve\" \"npm run server-start\""
   },
   "dependencies": {
     "axios": "^0.18.0",
     "core-js": "^3.6.4",
+    "moment": "^2.24.0",
     "vant": "^2.6.2",
     "vue": "^2.6.11",
     "vue-awesome-swiper": "^3.1.3",
