@@ -13,8 +13,10 @@
   "dependencies": {
     "bcrypt": "^4.0.1",
     "glob": "^7.1.6",
+    "jsonwebtoken": "^8.5.1",
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.3.0",
+    "koa-jwt": "^3.6.0",
     "koa-router": "^8.0.8",
     "koa2-cors": "^2.0.6",
     "mongoose": "^5.9.10"

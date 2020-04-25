@@ -47,6 +47,8 @@ npm i koa2-cors -S
 #安装concurrently，可以同时执行多个脚本
 npm i concurrently -S
 
+#安装jsonwebtoken,生成token 
+npm i jsonwebtoken -S 
 
-
-
+#安装koa-jwt
+npm i koa-jwt -S

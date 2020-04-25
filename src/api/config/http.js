@@ -4,6 +4,7 @@ import {Notify, Toast} from 'vant';
 import router from '../../router';
 import Vue from 'vue';
 import store from "@/store/index.js"
+import {getToken, removeToken} from "../../common/js/auth.js"
 
 let loadingInstance;
 let loadingCount = 0;
@@ -69,6 +70,13 @@ function endLoading() {
 http.interceptors.request.use(config => {
     if (config.options.loading) {
         startLoading();
+    }
+
+    //请求拦截器中给所有的请求header中添加token
+    if (store.getters.token) {
+        //config.headers['token'] = getToken();
+        //因为后台是express-jwt验证，所以必须写这样的格式
+        config.headers['Authorization'] = `${getToken()}`;
     }
 
     if (config.method === 'post') {

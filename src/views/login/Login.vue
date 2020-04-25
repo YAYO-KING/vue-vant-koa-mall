@@ -21,7 +21,7 @@
 
             </div>
             <div class="button-box">
-                <van-button type="primary" size="large" @click="handleLogin('loginForm')" :loading="openLoading">
+                <van-button type="primary" size="large" @click="handleLogin('loginForm')">
                     注册
                 </van-button>
             </div>
@@ -42,7 +42,6 @@
                     username: "",
                     password: ""
                 },
-                openLoading: false
             }
         },
         methods: {
@@ -54,15 +53,24 @@
                 let vm = this;
                 vm.validateRules(formName, vm).then(result => {
                     if (result) {
-                        vm.openLoading = true;
-                        vm.$api.login(vm.userForm).then(res => {
-                            //vm.$notify.success("注册成功");
-                            vm.$toast.success("登录成功");
-                            vm.openLoading = false;
+                        //vm.openLoading = true;
+                        //vm.$api.login(vm.userForm).then(res => {
+                        //    //vm.$notify.success("注册成功");
+                        //    vm.$toast.success("登录成功");
+                        //    vm.openLoading = false;
+                        //    //vm.$router.push("/");
+                        //}).catch(() => {
+                        //    vm.$toast.fail("登录失败");
+                        //    vm.openLoading = false;
+                        //})
+
+                        vm.$store.dispatch("user/login", vm.userForm).then(result => {
+                            //vm.$toast.success("登录成功");
+                            vm.$notify.success("登录成功");
                             vm.$router.push("/");
-                        }).catch(() => {
-                            vm.$toast.fail("登录失败");
-                            vm.openLoading = false;
+                        }).catch(err => {
+                            //vm.$toast.fail("登录失败");
+                            vm.$notify.fail("登录失败");
                         })
                     }
                 });

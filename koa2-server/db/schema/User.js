@@ -63,7 +63,3 @@ userSchema.methods = {
 
 //发布模型
 mongoose.model("User", userSchema);
-
-
-
-

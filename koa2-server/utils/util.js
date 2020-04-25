@@ -1,7 +1,7 @@
 const fs = require("fs");
 //const crypto = require("crypto");
 //const jwt = require("jsonwebtoken");
-//const {PRIVATE_KEY} = require("./constant.js");
+//const {PRIVATE_KEY} = require("./constants.js");
 
 const util = {
         TypeFn: {
@@ -1453,23 +1453,23 @@ const util = {
                 return util.ArrayFn.intersect(userInfo.privileges, needPrivileges).length > 0
             }
         },
-        //EnCryPtoFn: {
-        //    //加密解密相关的函数
-        //    md5(str) {
-        //        //参数需要为String类型
-        //        return crypto.createHash("md5").update(String(str)).digest("hex");
-        //    },
-        //
-        //    //解析token，获取数据
-        //    decode(req) {
-        //        let token = req.get("Authorization");
-        //        if (token.indexOf("Bearer") === 0) {
-        //            token = token.replace("Bearer ", "");
-        //        }
-        //        return jwt.verify(token, PRIVATE_KEY);
-        //    }
-        //
-        //},
+        EnCryPtoFn: {
+            //加密解密相关的函数
+            //md5(str) {
+            //    //参数需要为String类型
+            //    return crypto.createHash("md5").update(String(str)).digest("hex");
+            //},
+
+            ////解析token，获取数据
+            //decode(req) {
+            //    let token = req.get("Authorization");
+            //    if (token.indexOf("Bearer") === 0) {
+            //        token = token.replace("Bearer ", "");
+            //    }
+            //    return jwt.verify(token, PRIVATE_KEY);
+            //}
+
+        },
         OtherFn: {
             //等待sleep
             sleep(numberMills) {

@@ -10,6 +10,11 @@ const {connect, initSchemas} = require("./db/init");
 //引入mongoose
 const mongoose = require("mongoose");
 
+//引入jwt认证中间件
+const jwtutil = require("./utils/jwt.js");
+//使用jwt中间件
+app.use(jwtutil.jwtAuth);
+
 //解决跨域问题，这边其实我本地的vue.config.js配置proxy已经可以了
 const cors = require("koa2-cors");
 app.use(cors({

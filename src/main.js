@@ -14,6 +14,9 @@ import "@/common/css/reset.css"
 //导入图标
 import "@/common/css/iconfont/iconfont.css";
 
+//导入全局的路由守卫
+import "./permission.js";
+
 //导入自定义校验数据
 import rules from './common/js/rules';
 Vue.prototype.$rules = rules;

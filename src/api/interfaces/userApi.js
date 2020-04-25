@@ -17,6 +17,10 @@ const userApi = {
         //return post('/user/register', params, {loading: true})
         return post('/user/login', params, {loading: true})
     },
+    getUserInfo(params) {
+        //return post('/user/register', params, {loading: true})
+        return post('/user/getUserInfo', params)
+    },
 
 };
 
