@@ -9,12 +9,12 @@
             -->
             <div class="login-box">
                 <!--表单验证需要写入name-->
-                <g-input-view type="input" label="用户名" clearable v-model="userForm.username"
+                <g-input-view type="input" label="用户名" clearable :value.sync="userForm.username"
                               name="username"
                               placeholder="请输入用户名"
                               :rules="$rules.NotEmpty"
                 ></g-input-view>
-                <g-input-view type="password" label="密码" clearable v-model="userForm.password"
+                <g-input-view type="password" label="密码" clearable :value.sync="userForm.password"
                               name="password"
                               :rules="$rules.NotEmpty"
                               placeholder="请输入密码"></g-input-view>
@@ -55,13 +55,13 @@
                 vm.validateRules(formName, vm).then(result => {
                     if (result) {
                         vm.openLoading = true;
-                        vm.$api.register(vm.userForm).then(res => {
+                        vm.$api.login(vm.userForm).then(res => {
                             //vm.$notify.success("注册成功");
-                            vm.$toast.success("注册成功");
+                            vm.$toast.success("登录成功");
                             vm.openLoading = false;
                             vm.$router.push("/");
                         }).catch(() => {
-                            vm.$toast.fail("注册失败");
+                            vm.$toast.fail("登录失败");
                             vm.openLoading = false;
                         })
                     }

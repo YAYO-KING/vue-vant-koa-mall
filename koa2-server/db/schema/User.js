@@ -45,6 +45,22 @@ userSchema.pre("save", function (next) {  //这边一定要写function，不然�
     })
 });
 
+userSchema.methods = {
+    //用户密码的比对
+    comparePassword: (_password, password) => {
+        return new Promise((resolve, reject) => {
+            bcrypt.compare(_password, password, (err, isMatch) => {
+                if (!err) {
+                    resolve(isMatch);
+                } else {
+                    reject(reject);
+                }
+            });
+        })
+    }
+};
+
+
 //发布模型
 mongoose.model("User", userSchema);
 

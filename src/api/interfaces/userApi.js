@@ -12,7 +12,11 @@ const userApi = {
         //return post('/user/register', params, {loading: true})
         return post('/user/register', params)
     },
-
+    //用户登录
+    login(params) {
+        //return post('/user/register', params, {loading: true})
+        return post('/user/login', params, {loading: true})
+    },
 
 };
 
