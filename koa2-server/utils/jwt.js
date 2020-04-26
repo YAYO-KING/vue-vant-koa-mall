@@ -18,8 +18,8 @@ const jwtutil = {
             '/user/login',
             //"/good/insertAllGoodsInfo",
             //"/good/filterGoods"
-            '/category/insertCategory',
-
+            //"/good/insertCategory",
+            //"/good/insertCategorySub",
         ], // 设置 jwt 认证白名单
     }),
 
