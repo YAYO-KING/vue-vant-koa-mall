@@ -16,8 +16,10 @@ const jwtutil = {
             '/common/home',
             '/user/register',
             '/user/login',
-            "/good/insertAllGoodsInfo",
-            "/good/filterGoods"
+            //"/good/insertAllGoodsInfo",
+            //"/good/filterGoods"
+            '/category/insertCategory',
+
         ], // 设置 jwt 认证白名单
     }),
 

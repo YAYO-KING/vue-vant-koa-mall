@@ -31,11 +31,13 @@ const Router = require("koa-router");
 const user = require("./api/UserRouter");
 const home = require("./api/HomeRouter");
 const good = require("./api/GoodsRouter");
+const CategoryRouter = require("./api/CategoryRouter");
 //装载所有的子路由
 let router = new Router();
 router.use("/user", user.routes());
 router.use("/home", home.routes());
 router.use("/good", good.routes());
+router.use("/category", CategoryRouter.routes());
 //加载路由中间件
 app.use(router.routes());
 app.use(router.allowedMethods());
