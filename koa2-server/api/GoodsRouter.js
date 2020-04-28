@@ -25,8 +25,6 @@ router.get('/getGoodsDetail', async (ctx) => {
             message: "请求失败"
         }
     })
-
-
 });
 
 

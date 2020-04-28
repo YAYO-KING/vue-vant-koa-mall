@@ -9,7 +9,7 @@ const get = Http.get;
 
 const homeApi = {
     getHomeData() {
-        return get('/index')
+        return get('/home/index')
     },
 
 

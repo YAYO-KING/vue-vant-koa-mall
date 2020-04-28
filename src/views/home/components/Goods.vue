@@ -1,5 +1,5 @@
 <template>
-    <div class='Goods'>
+    <div class='Goods' @click="gotoGoodsDetail">
         <div class="goods-image">
             <img v-lazy="goodsImage" width="90%" alt="">
         </div>
@@ -16,17 +16,23 @@
 
     export default {
         name: "Goods",
-        props: ["goodsImage", "goodsName", "goodsPrice"],
+        props: ["goodsImage", "goodsName", "goodsPrice", "goodsId"],
         data() {
             return {}
         },
-        methods: {}
+        methods: {
+            gotoGoodsDetail() {
+                let vm = this;
+                vm.$router.push({path: "/goodsDetail", query: {goodsId: vm.goodsId}})
+            }
+        }
     }
 </script>
 
 <style lang='scss' scoped>
     .Goods {
         padding: 10px;
+
         .goods-name {
             padding: 0 8px;
             overflow: hidden;

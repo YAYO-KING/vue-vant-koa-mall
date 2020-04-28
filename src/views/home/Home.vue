@@ -27,7 +27,7 @@
                 -->
                 <van-swipe-item v-for="(image,index) in swipeImages" :key="index">
                     <!--因为引入了Lazyload，所以可以使用v-lazy加载显示图片-->
-                    <img v-lazy="image.imageUrl" alt="">
+                    <img v-lazy="image.image" alt="">
                 </van-swipe-item>
             </van-swipe>
         </div>
@@ -100,6 +100,7 @@
                                     :goodsImage="item.image"
                                     :goodsName="item.name"
                                     :goodsPrice="item.price"
+                                    :goodsId="item.goodsId"
                             ></Goods>
                         </van-col>
                     </van-row>
@@ -130,9 +131,9 @@
                     slidesPerView: 3
                 },
                 swipeImages: [
-                    {imageUrl: require("@/assets/images/advertisement/advertise1.jpg")},
-                    {imageUrl: require("@/assets/images/advertisement/advertise2.jpg")},
-                    {imageUrl: require("@/assets/images/advertisement/advertise3.jpg")}
+                    //{imageUrl: require("@/assets/images/advertisement/advertise1.jpg")},
+                    //{imageUrl: require("@/assets/images/advertisement/advertise2.jpg")},
+                    //{imageUrl: require("@/assets/images/advertisement/advertise3.jpg")}
                 ],
                 categoryList: [],
                 advertiseBanner: "",
@@ -151,6 +152,7 @@
                 vm.advertiseBanner = res.data.advertesPicture.PICTURE_ADDRESS;
                 vm.recommendGoods = res.data.recommend;
                 vm.floorNameList = res.data.floorName;
+                vm.swipeImages = res.data.slides;
                 vm.hotGoods = res.data.hotGoods;
                 //vm.floor1 = res.data.floor1;
                 for (let key in vm.floorNameList) {
