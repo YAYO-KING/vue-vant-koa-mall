@@ -8,10 +8,11 @@
     "server-start": "npm start --prefix ./koa2-server",
     "build:test": "vue-cli-service build --mode test",
     "build:prod": "vue-cli-service build --mode prod",
-    "dev": "concurrently \"npm run serve\" \"npm run server-start\""
+    "dev": "concurrently  \"npm run serve\"  \"npm run server-start\""
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "concurrently": "^5.2.0",
     "core-js": "^3.6.4",
     "js-cookie": "^2.2.1",
     "moment": "^2.24.0",

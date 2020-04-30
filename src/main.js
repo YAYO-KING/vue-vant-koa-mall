@@ -32,8 +32,9 @@ Vue.use(backbase);
 
 //按需引入：打包少，程序运行速度会变快
 //使用babel-plugin-import实现按需引入，配置babel.config.js文件
-import {Button, Row, Col, Swipe, SwipeItem, Lazyload, List, Field, NavBar, Toast, Notify, Form} from "vant";
-Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload).use(List).use(Field).use(NavBar).use(Toast).use(Notify).use(Form);
+import {Button, Row, Col, Swipe, SwipeItem, Lazyload, List, Field, NavBar, Toast, Notify, Form,Tab,Tabs} from "vant";
+Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload).use(List).use(Field).use(NavBar).use(Toast).use(Notify).use(Form)
+    .use(Tab).use(Tabs);
 
 //导入api接口
 import api from './api/index';

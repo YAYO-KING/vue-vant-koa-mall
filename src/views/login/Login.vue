@@ -66,11 +66,12 @@
 
                         vm.$store.dispatch("user/login", vm.userForm).then(result => {
                             //vm.$toast.success("登录成功");
-                            vm.$notify.success("登录成功");
+                            vm.$notify({message: "登录成功", type: "success"});
                             vm.$router.push("/");
                         }).catch(err => {
+                            console.log(err);
                             //vm.$toast.fail("登录失败");
-                            vm.$notify.fail("登录失败");
+                            vm.$notify({message: "登录失败", type: "danger"});
                         })
                     }
                 });
