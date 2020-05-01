@@ -33,7 +33,7 @@
                         <van-pull-refresh v-model="isRefresh" @refresh="onRefresh">
                             <van-list v-model="loading" :finished="finished" @load="onLoad">
                                 <div class="list-item" v-for="(item,index) in goodList" :key="index"
-                                     @click="onClickCategorySub(index)">
+                                     @click="goGoodsInfo(item.ID)">
                                     <div class="list-item-img">
                                         <!--onerror 图片失效-->
                                         <img :src="item.IMAGE1" :onerror="errorImg" width="100%"/>
@@ -156,7 +156,14 @@
                 vm.finished = false;
                 vm.page = 1;
                 vm.onLoad()
-            }
+            },
+            //跳转到商品详情页面
+            goGoodsInfo(id) {
+                let vm = this;
+                //vm.$router.push({name: "GoodsDetail", query: {goodsId: id}})
+                vm.$router.push({path: "/goodsDetail", query: {goodsId: id}})
+                //vm.$router.push({name: "GoodsDetail", params: {goodsId: id}})
+            },
         }
     }
 </script>
