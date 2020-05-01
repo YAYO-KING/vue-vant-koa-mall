@@ -10,7 +10,10 @@
         <div class="goods-name">{{goodsDetail.NAME}}</div>
         <div class="goods-price">价格：{{goodsDetail.PRESENT_PRICE|moneyFilter}}元</div>
         <div>
-            <van-tabs>
+            <van-tabs swipeable sticky>
+                <!--swipeable 实现tab的滑动切换
+                sticky 开启吸顶效果 当Tab滚动到顶部时会自动吸顶
+                -->
                 <van-tab title="商品详情">
                     <div class="detail" v-html="goodsDetail.DETAIL"></div>
                 </van-tab>

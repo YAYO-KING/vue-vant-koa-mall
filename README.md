@@ -52,3 +52,6 @@ npm i jsonwebtoken -S
 
 #安装koa-jwt
 npm i koa-jwt -S
+
+#安装vue-router，避免报错Uncaught (in promise) undefined
+npm i vue-router@3.0 -S

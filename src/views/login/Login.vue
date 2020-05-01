@@ -67,7 +67,8 @@
                         vm.$store.dispatch("user/login", vm.userForm).then(result => {
                             //vm.$toast.success("登录成功");
                             vm.$notify({message: "登录成功", type: "success"});
-                            vm.$router.push("/");
+                            vm.$router.push({path: "/"}, onComplete =>{},onAbort =>{});
+                            //Uncaught (in promise) undefined 在调用push时，设置回调函数，就可以解决这个问题
                         }).catch(err => {
                             console.log(err);
                             //vm.$toast.fail("登录失败");

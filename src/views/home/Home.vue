@@ -21,7 +21,7 @@
 
         <!--轮播图区域-->
         <div class="swiper-box">
-            <van-swipe :autoplay="1000">
+            <van-swipe :autoplay="1000" v-if="swipeImages && swipeImages.length">
                 <!--
                      autoplay 轮播时间
                 -->
@@ -33,7 +33,7 @@
         </div>
 
         <!--类别区域-->
-        <div class="category-box">
+        <div class="category-box" v-if="categoryList && categoryList.length">
             <div v-for="(category,index) in categoryList" :key="index">
                 <img v-lazy="category.image">
                 <div>{{category.mallCategoryName}}</div>
@@ -46,7 +46,7 @@
         </div>
 
         <!--推荐的商品-->
-        <div class="recommend-box">
+        <div class="recommend-box" v-if="recommendGoods && recommendGoods.length">
             <div class="recommend-title">商品推荐</div>
             <div class="recommend-body">
                 <swiper :options="swiperOptions">
@@ -89,7 +89,7 @@
         </div>
 
         <!--热卖模块-->
-        <div class="hot-box">
+        <div class="hot-box" v-if="hotGoods && hotGoods.length">
             <div class="hot-title">热卖商品</div>
             <div class="hot-goods">
                 <!--瀑布流滚动加载，用于展示长列表，当列表即将滚动到底部时，会触发事件并加载更多列表项。-->

@@ -19,18 +19,6 @@ const routes = [
         ]
     },
     {
-        path: '/',
-        component: Layout,
-        redirect: '/home',
-        children: [
-            {
-                path: '/home',
-                component: () => import('@/views/home/Home'),
-                name: 'Home'
-            }
-        ]
-    },
-    {
         path: '/swiper-default',
         component: () => import('@/views/swiperDemo/SwiperDefault'),
         name: 'SwiperDefault'
@@ -49,6 +37,18 @@ const routes = [
         path: '/goodsDetail',
         component: () => import('@/views/goods/GoodsDetail'),
         name: 'GoodsDetail'
+    },
+    {
+        path: '/',
+        component: Layout,
+        redirect: '/home',
+        children: [
+            {
+                path: '/home',
+                component: () => import('@/views/home/Home'),
+                name: 'Home'
+            }
+        ]
     },
 
 ];
