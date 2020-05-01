@@ -23,10 +23,18 @@
                         <van-tabs v-model="active">
                             <van-tab v-for="(item,index) in categorySubList" :key="index"
                                      :title="item.MALL_SUB_NAME">
-                                content {{ index }}
                             </van-tab>
                         </van-tabs>
                     </div>
+
+                    <div class="list-box">
+                        <van-list v-model="loading" :finished="finished" @load="onLoad">
+                            <div class="list-item" v-for="item in list" :key="item">
+                                {{item}}
+                            </div>
+                        </van-list>
+                    </div>
+
                 </van-col>
             </van-row>
         </div>
@@ -47,32 +55,55 @@
                 activeIndex: 0,
                 categorySubList: [],
                 //右侧激活的下标
-                active: 0
+                active: 0,
+                loading: false,
+                finished: false, //上拉加载是否有数据
+                list: [], //商品数据
             }
         },
         created() {
             let vm = this;
             vm.$api.getCategoryList().then(res => {
                 vm.categoryList = res.data;
-                vm.$api.getCategorySubList({categoryId:vm.categoryList[0].ID}).then(res => {
+                vm.$api.getCategorySubList({categoryId: vm.categoryList[0].ID}).then(res => {
                     vm.categorySubList = res.data;
                 })
             })
+        },
+        mounted() {
+            //计算左侧导航栏的高度
+            let winHeight = document.documentElement.clientHeight;
+            document.getElementsByClassName("left-box")[0].style.height = winHeight - 46 + "px";
+            document.getElementsByClassName("list-box")[0].style.height = winHeight - 90 + "px";
         },
         methods: {
             handleClickCategory(index, categoryId) {
                 let vm = this;
                 vm.activeIndex = index;
                 vm.getCategorySubByCategoryId(categoryId);
-                vm.active = 0;
             },
             // 根据大类获取小类的类别列表
             getCategorySubByCategoryId(categoryId) {
                 let vm = this;
                 vm.$api.getCategorySubList({categoryId}).then(res => {
+                    vm.active = 0;
                     vm.categorySubList = res.data;
                 })
-            }
+            },
+            // 上拉加载方法
+            onLoad() {
+                let vm = this;
+                setTimeout(() => {
+                    for (let i = 0; i < 10; i++) {
+                        vm.list.push(vm.list.length + 1);
+                    }
+                    vm.loading = false;
+                    if (vm.list.length >= 40) {
+                        vm.finished = true;
+                    }
+
+                }, 500);
+            },
         }
     }
 </script>
@@ -83,10 +114,11 @@
 
         .left-box {
             background-color: aliceblue;
-            height: calc(100vh - 46px);
+            /*height: calc(100vh - 46px);*/
 
             ul li {
-                line-height: 0.5rem;
+                /*line-height: 0.78rem;*/
+                line-height: 38px;
                 border-bottom: 1px solid #E4E7ED;
                 padding: 3px;
                 font-size: 0.3rem;
@@ -95,6 +127,17 @@
                 &.active {
                     background-color: #fff;
                 }
+            }
+        }
+
+        .list-box {
+            overflow: scroll;
+
+            .list-item {
+                text-align: center;
+                line-height: 80px;
+                border-bottom: 1px solid #f0f0f0;
+                background-color: #fff;
             }
         }
     }
