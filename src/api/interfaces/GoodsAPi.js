@@ -16,6 +16,9 @@ const goodsApi = {
     getCategorySubList(params) {
         return get('/good/getCategorySubList',params)
     },
+    getGoodsBySubId(params) {
+        return post('/good/getGoodsListByCategorySubID',params)
+    },
 
 
 };

@@ -220,6 +220,7 @@
                 padding: 0.1rem;
                 font-size: 12px;
                 text-align: center;
+                flex: 1; //子元素平均分布
 
                 img {
                     width: 1rem; //50px

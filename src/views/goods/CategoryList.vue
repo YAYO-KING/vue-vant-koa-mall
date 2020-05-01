@@ -8,6 +8,7 @@
             <van-row>
                 <van-col span="6">
                     <div class="left-box">
+                        <!--大类-->
                         <ul>
                             <li v-for="(item,index) in categoryList" :key="index"
                                 :class="{active:index === activeIndex}"
@@ -20,7 +21,8 @@
                 </van-col>
                 <van-col span="18">
                     <div class="right-box">
-                        <van-tabs v-model="active">
+                        <!--小类-->
+                        <van-tabs v-model="active" @click="onClickCategorySub">
                             <van-tab v-for="(item,index) in categorySubList" :key="index"
                                      :title="item.MALL_SUB_NAME">
                             </van-tab>
@@ -30,8 +32,15 @@
                     <div class="list-box">
                         <van-pull-refresh v-model="isRefresh" @refresh="onRefresh">
                             <van-list v-model="loading" :finished="finished" @load="onLoad">
-                                <div class="list-item" v-for="item in list" :key="item">
-                                    {{item}}
+                                <div class="list-item" v-for="(item,index) in goodList" :key="index"
+                                     @click="onClickCategorySub(index)">
+                                    <div class="list-item-img">
+                                        <img :src="item.IMAGE1" width="100%"/>
+                                    </div>
+                                    <div class="list-item-text">
+                                        <div>{{item.NAME}}</div>
+                                        <div class="">￥{{item.ORI_PRICE|moneyFilter}}</div>
+                                    </div>
                                 </div>
                             </van-list>
                         </van-pull-refresh>
@@ -60,8 +69,10 @@
                 active: 0,
                 loading: false,
                 finished: false, //上拉加载是否有数据
-                list: [], //商品数据
                 isRefresh: false, //下拉加载
+                page: 1,          //商品列表的页数
+                goodList: [],     //商品信息
+                categorySubId: '' //商品子分类ID
             }
         },
         created() {
@@ -80,8 +91,12 @@
             document.getElementsByClassName("list-box")[0].style.height = winHeight - 90 + "px";
         },
         methods: {
+            //点击大类的方法
             handleClickCategory(index, categoryId) {
                 let vm = this;
+                vm.page = 1;
+                vm.finished = false;
+                vm.goodList = [];
                 vm.activeIndex = index;
                 vm.getCategorySubByCategoryId(categoryId);
             },
@@ -91,30 +106,54 @@
                 vm.$api.getCategorySubList({categoryId}).then(res => {
                     vm.active = 0;
                     vm.categorySubList = res.data;
+                    vm.categorySubId = vm.categorySubList[0].ID;
+                    vm.onLoad();
                 })
             },
             // 上拉加载方法
             onLoad() {
                 let vm = this;
                 setTimeout(() => {
-                    for (let i = 0; i < 10; i++) {
-                        vm.list.push(vm.list.length + 1);
-                    }
-                    vm.loading = false;
-                    if (vm.list.length >= 40) {
-                        vm.finished = true;
-                    }
-
-                }, 500);
+                    vm.categorySubId = vm.categorySubId ? vm.categorySubId : vm.categorySubList[0].ID;
+                    //加载更多的数据
+                    vm.getGoodList();
+                }, 1000);
             },
             //重新加载数据
             onRefresh() {
                 let vm = this;
                 setTimeout(() => {
                     vm.isRefresh = false;
-                    vm.list = [];
+                    vm.finished = false;
+                    vm.goodList = [];
+                    vm.page = 1;
                     vm.onLoad()
                 }, 500);
+            },
+            //商品列表数据获取
+            getGoodList() {
+                let vm = this;
+                vm.$api.getGoodsBySubId({
+                    categorySubId: vm.categorySubId,
+                    page: vm.page
+                }).then(res => {
+                    if (res.data && res.data.length) {
+                        vm.page++;
+                        vm.goodList = vm.goodList.concat(res.data)
+                    } else {
+                        vm.finished = true;
+                    }
+                    vm.loading = false;
+                })
+            },
+            //点击获取子类商品信息的方法
+            onClickCategorySub(index) {
+                let vm = this;
+                vm.categorySubId = vm.categorySubList[index].ID;
+                vm.goodList = [];
+                vm.finished = false;
+                vm.page = 1;
+                vm.onLoad()
             }
         }
     }
@@ -146,10 +185,22 @@
             overflow: scroll;
 
             .list-item {
-                text-align: center;
-                line-height: 80px;
+                display: flex;
+                flex-direction: row;
+                font-size: 0.3rem;
                 border-bottom: 1px solid #f0f0f0;
                 background-color: #fff;
+                padding: 5px;
+
+                .list-item-img {
+                    flex: 8;
+                }
+
+                .list-item-text {
+                    flex: 16;
+                    margin-top: 10px;
+                    margin-left: 10px;
+                }
             }
         }
     }
