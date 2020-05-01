@@ -27,6 +27,63 @@ router.get('/getGoodsDetail', async (ctx) => {
     })
 });
 
+//获取商品类别的数据接口
+router.get('/getCategoryList', async (ctx) => {
+    const Category = mongoose.model("Category");
+    await Category.find().exec().then(async (result) => {
+        ctx.body = {
+            code: 200,
+            data: result.RECORDS,
+            message: "请求成功"
+        }
+    }).catch((error) => {
+        ctx.body = {
+            code: 500,
+            data: error,
+            message: "请求失败"
+        }
+    })
+});
+
+//获取商品小类别的数据接口
+router.get('/getCategorySubList', async (ctx) => {
+    let categoryId = ctx.request.query.categoryId;
+    const CategorySub = mongoose.model("CategorySub");
+    await CategorySub.find({MALL_CATEGORY_ID:categoryId}).exec().then(async (result) => {
+        ctx.body = {
+            code: 200,
+            data: result.RECORDS,
+            message: "请求成功"
+        }
+    }).catch((error) => {
+        ctx.body = {
+            code: 500,
+            data: error,
+            message: "请求失败"
+        }
+    })
+});
+
+
+//获取类别获取商品列表
+router.get('/getGoodsListByCategorySubID', async (ctx) => {
+    let categorySubId = ctx.request.query.categorySubId;
+    const Goods = mongoose.model("Goods");
+    await Goods.find({SUB_ID:categorySubId}).exec().then(async (result) => {
+        ctx.body = {
+            code: 200,
+            data: result.RECORDS,
+            message: "请求成功"
+        }
+    }).catch((error) => {
+        ctx.body = {
+            code: 500,
+            data: error,
+            message: "请求失败"
+        }
+    })
+});
+
 
 /**
  * 插入数据进数据库的接口
