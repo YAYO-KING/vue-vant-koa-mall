@@ -28,11 +28,13 @@
                     </div>
 
                     <div class="list-box">
-                        <van-list v-model="loading" :finished="finished" @load="onLoad">
-                            <div class="list-item" v-for="item in list" :key="item">
-                                {{item}}
-                            </div>
-                        </van-list>
+                        <van-pull-refresh v-model="isRefresh" @refresh="onRefresh">
+                            <van-list v-model="loading" :finished="finished" @load="onLoad">
+                                <div class="list-item" v-for="item in list" :key="item">
+                                    {{item}}
+                                </div>
+                            </van-list>
+                        </van-pull-refresh>
                     </div>
 
                 </van-col>
@@ -59,6 +61,7 @@
                 loading: false,
                 finished: false, //上拉加载是否有数据
                 list: [], //商品数据
+                isRefresh: false, //下拉加载
             }
         },
         created() {
@@ -104,6 +107,15 @@
 
                 }, 500);
             },
+            //重新加载数据
+            onRefresh() {
+                let vm = this;
+                setTimeout(() => {
+                    vm.isRefresh = false;
+                    vm.list = [];
+                    vm.onLoad()
+                }, 500);
+            }
         }
     }
 </script>
