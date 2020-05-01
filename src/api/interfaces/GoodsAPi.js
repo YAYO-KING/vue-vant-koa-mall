@@ -10,6 +10,9 @@ const goodsApi = {
     getGoodsDetail(params) {
         return get('/good/getGoodsDetail',params)
     },
+    getCategoryList(params) {
+        return get('/good/getCategoryList',params)
+    },
 
 
 };

@@ -39,6 +39,11 @@ const routes = [
         name: 'GoodsDetail'
     },
     {
+        path: '/categoryList',
+        component: () => import('@/views/goods/CategoryList'),
+        name: 'CategoryList'
+    },
+    {
         path: '/',
         component: Layout,
         redirect: '/home',

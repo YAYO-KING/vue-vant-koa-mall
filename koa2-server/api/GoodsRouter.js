@@ -33,7 +33,7 @@ router.get('/getCategoryList', async (ctx) => {
     await Category.find().exec().then(async (result) => {
         ctx.body = {
             code: 200,
-            data: result.RECORDS,
+            data: result,
             message: "请求成功"
         }
     }).catch((error) => {
@@ -52,7 +52,7 @@ router.get('/getCategorySubList', async (ctx) => {
     await CategorySub.find({MALL_CATEGORY_ID:categoryId}).exec().then(async (result) => {
         ctx.body = {
             code: 200,
-            data: result.RECORDS,
+            data: result,
             message: "请求成功"
         }
     }).catch((error) => {
@@ -72,7 +72,7 @@ router.get('/getGoodsListByCategorySubID', async (ctx) => {
     await Goods.find({SUB_ID:categorySubId}).exec().then(async (result) => {
         ctx.body = {
             code: 200,
-            data: result.RECORDS,
+            data: result,
             message: "请求成功"
         }
     }).catch((error) => {
