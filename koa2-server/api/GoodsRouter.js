@@ -49,7 +49,7 @@ router.get('/getCategoryList', async (ctx) => {
 router.get('/getCategorySubList', async (ctx) => {
     let categoryId = ctx.request.query.categoryId;
     const CategorySub = mongoose.model("CategorySub");
-    await CategorySub.find({MALL_CATEGORY_ID:categoryId}).exec().then(async (result) => {
+    await CategorySub.find({MALL_CATEGORY_ID: categoryId}).exec().then(async (result) => {
         ctx.body = {
             code: 200,
             data: result,
@@ -66,10 +66,14 @@ router.get('/getCategorySubList', async (ctx) => {
 
 
 //获取类别获取商品列表
-router.get('/getGoodsListByCategorySubID', async (ctx) => {
-    let categorySubId = ctx.request.query.categorySubId;
+router.post('/getGoodsListByCategorySubID', async (ctx) => {
+    let categorySubId = ctx.request.query.categorySubId; //子类别ID
+    let page = ctx.request.query.page; //当前页数
+    let pageSize = 10; //每页显示数量
+    let start = (page - 1) * pageSize; //开始位置
+    //let end = page * pageSize; //结束位置
     const Goods = mongoose.model("Goods");
-    await Goods.find({SUB_ID:categorySubId}).exec().then(async (result) => {
+    await Goods.find({SUB_ID: categorySubId}).skip(start).limit(pageSize).exec().then(async (result) => {
         ctx.body = {
             code: 200,
             data: result,
