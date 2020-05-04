@@ -44,6 +44,11 @@ const routes = [
         name: 'CategoryList'
     },
     {
+        path: '/cart',
+        component: () => import('@/views/cart/Cart'),
+        name: 'Cart'
+    },
+    {
         path: '/',
         component: Layout,
         redirect: '/home',
