@@ -10,18 +10,29 @@
         </div>
         <!--显示购物车中的商品-->
         <div class="cart-list">
-            <div class="cart-row" v-for="(item,index) in $store.state.good.cartInfo" :key="item.ID">
+            <div class="cart-row" v-for="(item,index) in cartInfo" :key="item.ID">
                 <div class="cart-img">
                     <img :src="item.IMAGE1" width="100%" alt="">
                 </div>
                 <div class="cart-text">
                     <div class="goods-name">{{item.NAME}}</div>
                     <div class="goods-count">
-                        <van-stepper v-model="item.count" />
+                        <van-stepper v-model="item.count"/>
                     </div>
                 </div>
-                <div class="cart-price">￥{{item.PRESENT_PRICE|moneyFilter}}</div>
+                <div class="cart-price">
+                    <div>￥{{item.PRESENT_PRICE|moneyFilter}}</div>
+                    <div>X{{item.count}}</div>
+                    <div class="all-price">
+                        ￥{{item.PRESENT_PRICE*item.count|moneyFilter}}
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <!--显示总金额-->
+        <div class="total-money">
+            商品总价:￥{{totalMoney|moneyFilter}}
         </div>
     </div>
 </template>
@@ -30,6 +41,7 @@
     /**
      * Created by yanyue on 2020/5/4 10:15
      */
+    import {mapState} from "vuex";
 
     export default {
         name: "Cart",
@@ -41,9 +53,16 @@
 
         },
         computed: {
-            isEmpty() {
+            ...mapState({
+                cartInfo: state => state.good.cartInfo
+            }),
+            totalMoney() {
                 let vm = this;
-                return !!(vm.cartInfo.length > 0);
+                let money = 0;
+                vm.cartInfo.forEach(item => {
+                    money += item.PRESENT_PRICE * item.count;
+                });
+                return money;
             }
         },
         methods: {
@@ -88,15 +107,26 @@
                     padding-left: 10px;
                 }
 
-                .goods-count{
+                .goods-count {
                     padding-top: 10px;
                 }
 
-                .cart-price{
+                .cart-price {
                     flex: 4;
                     text-align: right;
                 }
+
+                .all-price {
+                    color: red;
+                }
             }
+        }
+
+        .total-money {
+            text-align: right;
+            background-color: #fff;
+            border-bottom: 1px solid #E4E7ED;
+            padding: 5px;
         }
     }
 </style>
