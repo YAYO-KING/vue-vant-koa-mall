@@ -57,6 +57,7 @@
     /**
      * Created by yanyue on 2020/5/1 10:59
      */
+    import {mapState, mapActions} from 'vuex';
 
     export default {
         name: "CategoryList",
@@ -93,6 +94,7 @@
             document.getElementsByClassName("list-box")[0].style.height = winHeight - 90 + "px";
         },
         methods: {
+            ...mapActions('good', ['clearCurrentState']),
             //点击大类的方法
             handleClickCategory(index, categoryId) {
                 let vm = this;
@@ -160,10 +162,9 @@
             //跳转到商品详情页面
             goGoodsInfo(id) {
                 let vm = this;
-                //vm.$router.push({name: "GoodsDetail", query: {goodsId: id}})
-                vm.$router.push({path: "/goodsDetail", query: {goodsId: id}})
-                //vm.$router.push({name: "GoodsDetail", params: {goodsId: id}})
+                vm.$router.push({path: "/goodsDetail", query: {goodsId: id}});
             },
+
         }
     }
 </script>

@@ -651,6 +651,20 @@ const util = {
                 return arr[index];
             },
 
+            //判断数组中的包含某个属性值的对象
+            containsObjArr(arr, value, key) {
+                let index = null;
+                for (let i = 0; i < arr.length; i++) {
+                    if (arr[i][key] == value) {
+                        index = i;
+                    }
+                }
+                if (index === null) {
+                    return null;
+                }
+                return index;
+            },
+
             sliceArrLength(arr, length) {
                 let result = [];
                 for (let i = 0, len = arr.length; i < len; i += length) {

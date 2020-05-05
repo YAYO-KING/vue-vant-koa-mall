@@ -15,7 +15,7 @@
         name: "Cart",
         data() {
             return {
-                cartInfo: [],
+                cartInfo: this.$store.good.cartInfo,
 
             }
         },

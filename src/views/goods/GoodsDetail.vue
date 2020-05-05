@@ -24,7 +24,7 @@
         </div>
         <div class="goods-bottom">
             <div>
-                <van-button size="large" type="primary">加入购物车</van-button>
+                <van-button size="large" type="primary" @click="addGoodsToCart">加入购物车</van-button>
             </div>
             <div>
                 <van-button size="large" type="danger">直接购买</van-button>
@@ -52,7 +52,14 @@
                 vm.goodsDetail = res.data;
             })
         },
-        methods: {}
+        methods: {
+            //添加商品到购物车
+            addGoodsToCart() {
+                let vm = this;
+                vm.$store.dispatch("good/set_cartInfo", vm.goodsDetail);
+                vm.$toast.success("添加成功");
+            }
+        }
     }
 </script>
 
