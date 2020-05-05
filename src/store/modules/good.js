@@ -31,7 +31,7 @@ const good = {
                 }
             }
         },
-        clear_cartInf0({commit}, cart) {
+        clear_cartInfo({commit}, cart) {
             commit('SET_CARTINFO', []);
         }
     },

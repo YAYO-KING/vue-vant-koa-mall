@@ -19,10 +19,12 @@ import "./permission.js";
 
 //导入自定义校验数据
 import rules from './common/js/rules';
+
 Vue.prototype.$rules = rules;
 
 //在Vue对象上全局注册一些自定义方法
 import backbase from './common/js/backbase';
+
 Vue.use(backbase);
 
 //全局引入：导入vant的ui组件库--全局引入（缺点引入的包很大，导致打开程序很慢，尤其是手机端网速不行的时候）
@@ -32,12 +34,31 @@ Vue.use(backbase);
 
 //按需引入：打包少，程序运行速度会变快
 //使用babel-plugin-import实现按需引入，配置babel.config.js文件
-import {Button, Row, Col, Swipe, SwipeItem, Lazyload, List, Field, NavBar, Toast, Notify, Form,Tab,Tabs,PullRefresh} from "vant";
+import {
+    Button,
+    Row,
+    Col,
+    Swipe,
+    SwipeItem,
+    Lazyload,
+    List,
+    Field,
+    NavBar,
+    Toast,
+    Notify,
+    Form,
+    Tab,
+    Tabs,
+    PullRefresh,
+    Stepper
+} from "vant";
+
 Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload).use(List).use(Field).use(NavBar).use(Toast).use(Notify).use(Form)
-    .use(Tab).use(Tabs).use(PullRefresh);
+    .use(Tab).use(Tabs).use(PullRefresh).use(Stepper);
 
 //导入api接口
 import api from './api/index';
+
 Vue.prototype.$api = api;
 
 //引入vue-awesome-swiper的使用,全局使用（如果只是某个页面使用的话，就在那个页面引入就可以了）
@@ -54,6 +75,7 @@ Object.keys(filters).forEach(key => {
 
 //全局使用自定义的UI的组件
 import GUI from './components/plugins';
+
 Vue.use(GUI);
 
 
