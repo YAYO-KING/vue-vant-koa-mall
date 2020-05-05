@@ -91,7 +91,7 @@
             //计算左侧导航栏的高度
             let winHeight = document.documentElement.clientHeight;
             document.getElementsByClassName("left-box")[0].style.height = winHeight - 46 + "px";
-            document.getElementsByClassName("list-box")[0].style.height = winHeight - 90 + "px";
+            document.getElementsByClassName("list-box")[0].style.height = winHeight - 90 - 50 + "px"; //减去顶部和底部的部分
         },
         methods: {
             ...mapActions('good', ['clearCurrentState']),

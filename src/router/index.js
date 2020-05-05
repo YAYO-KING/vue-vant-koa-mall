@@ -40,13 +40,25 @@ const routes = [
     },
     {
         path: '/categoryList',
-        component: () => import('@/views/goods/CategoryList'),
-        name: 'CategoryList'
+        component: Layout,
+        children: [
+            {
+                path: '/',
+                component: () => import('@/views/goods/CategoryList'),
+                name: 'CategoryList'
+            }
+        ]
     },
     {
         path: '/cart',
-        component: () => import('@/views/cart/Cart'),
-        name: 'Cart'
+        component: Layout,
+        children: [
+            {
+                path: '/',
+                component: () => import('@/views/cart/Cart'),
+                name: 'Cart'
+            }
+        ]
     },
     {
         path: '/',

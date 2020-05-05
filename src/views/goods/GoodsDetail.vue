@@ -58,6 +58,7 @@
                 let vm = this;
                 vm.$store.dispatch("good/set_cartInfo", vm.goodsDetail);
                 vm.$toast.success("添加成功");
+                vm.$router.push("/cart");
             }
         }
     }

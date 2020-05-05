@@ -50,11 +50,13 @@ import {
     Tab,
     Tabs,
     PullRefresh,
-    Stepper
+    Stepper,
+    Tabbar,
+    TabbarItem
 } from "vant";
 
 Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload).use(List).use(Field).use(NavBar).use(Toast).use(Notify).use(Form)
-    .use(Tab).use(Tabs).use(PullRefresh).use(Stepper);
+    .use(Tab).use(Tabs).use(PullRefresh).use(Stepper).use(Tabbar).use(TabbarItem);
 
 //导入api接口
 import api from './api/index';
